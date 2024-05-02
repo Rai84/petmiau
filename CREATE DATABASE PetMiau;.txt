@@ -1,0 +1,63 @@
+CREATE DATABASE PetMiau;
+USE PetMiau;
+
+CREATE TABLE Cliente (
+    IDdoCliente INT AUTO_INCREMENT PRIMARY KEY,
+    Telefone varchar(20),
+    CPF VARCHAR(20),
+    Nome VARCHAR(100),
+    Endereco VARCHAR(100),
+    Email VARCHAR(100)
+);
+
+ALTER TABLE Cliente MODIFY COLUMN Telefone VARCHAR(20);
+
+delete from cliente;
+
+CREATE TABLE Pet (
+    IDdoPet INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Idade INT,
+    Porte VARCHAR(100),
+    Pedigree INT
+);
+
+DROP TABLE Pet;
+
+
+
+CREATE TABLE Funcionario (
+    IDdoFuncionario INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Telefone INT,
+    CPF VARCHAR(20)
+);
+
+CREATE TABLE Servicos (
+    IDdoServico INT AUTO_INCREMENT PRIMARY KEY,
+    Tipos VARCHAR(50),
+    Preco DECIMAL(10, 2)
+);
+
+CREATE TABLE Agendamento (
+    IDdoAgendamento INT AUTO_INCREMENT PRIMARY KEY,
+    IDdoCliente INT,
+    IDdoFuncionario INT,
+    Horario TIME,
+    Data DATE,
+    FOREIGN KEY (IDdoCliente) REFERENCES Cliente(IDdoCliente),
+    FOREIGN KEY (IDdoFuncionario) REFERENCES Funcionario(IDdoFuncionario)
+);
+
+CREATE TABLE Detalhamento (
+    IDdoDetalhamento INT AUTO_INCREMENT PRIMARY KEY,
+    IDdoAgendamento INT,
+    IDdoServico INT,
+    Quantidade INT,
+    FOREIGN KEY (IDdoAgendamento) REFERENCES Agendamento(IDdoAgendamento),
+    FOREIGN KEY (IDdoServico) REFERENCES Servicos(IDdoServico)
+);
+
+select * from CLIENTE;
+select * from pet;
+
